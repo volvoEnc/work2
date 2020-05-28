@@ -7,18 +7,18 @@ use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
-    public function show_other_settings()
+    public function show()
     {
-        return view('admin.other.other');
+        return view('admin.info.show');
     }
 
-    public function show_footer_settings()
+    public function update_social()
     {
-        return view('admin.other.footer');
+        return redirect()->route('admin.site.info.show');
     }
 
-    public function show_faq_page()
+    public function update_links()
     {
-        return view('admin.faq.index');
+        return redirect()->route('admin.site.info.show');
     }
 }

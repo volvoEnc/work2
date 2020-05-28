@@ -7,8 +7,17 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    // Список заказов
+
     public function index()
     {
         return view('admin.order.index');
+    }
+
+    // Смена статуса заказа
+
+    public function status()
+    {
+        return back();
     }
 }

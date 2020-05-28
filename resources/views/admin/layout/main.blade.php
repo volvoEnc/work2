@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -48,17 +48,12 @@
 
                     <div class="sb-sidenav-menu-heading">Сайт</div>
 
-                    <a class="nav-link" href="{{route('admin.site.faq.show')}}">
+                    <a class="nav-link" href="{{route('admin.site.faq.index')}}">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         FAQ
                     </a>
 
-                    <a class="nav-link" href="{{route('admin.site.footer.show')}}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                        Подвал
-                    </a>
-
-                    <a class="nav-link" href="{{route('admin.site.other.show')}}">
+                    <a class="nav-link" href="{{route('admin.site.info.show')}}">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         Прочее
                     </a>
@@ -70,8 +65,13 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
-                <h1 class="mt-4">@yield('caption')</h1>
-                @yield('content')
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h3 class="">@yield('caption')</h3>
+                    </div>
+                    @yield('content')
+                </div>
+
             </div>
         </main>
         <footer class="py-4 bg-light mt-auto">
@@ -89,5 +89,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+    $(function () { $('[data-toggle="tooltip"]').tooltip() })
+</script>
+
 </body>
 </html>
