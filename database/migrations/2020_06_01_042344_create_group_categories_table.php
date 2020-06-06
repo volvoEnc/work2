@@ -15,12 +15,12 @@ class CreateGroupCategoriesTable extends Migration
     {
         Schema::create('group_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('main_id');
+            $table->foreignId('main_id')->nullable();
 
             $table->string('name');
-            $table->string('image');
+            $table->string('image')->nullable();
 
-            $table->foreign('main_id')->references('id')->on('main_categories');
+            $table->foreign('main_id')->references('id')->on('main_categories')->onDelete('set null');
         });
     }
 

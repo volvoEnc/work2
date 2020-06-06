@@ -5,14 +5,14 @@
 
 
 @section('content')
-        <form class="p-4" method="post" action="{{ route('admin.categories.main.store') }}">
+        <form class="p-4" method="post" enctype="multipart/form-data" action="{{ route('admin.categories.main.store') }}">
             @csrf
             <div class="form-group">
                 <label for="exampleInputEmail1">Название категории</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <div class="custom-file mb-3">
-                <input type="file" class="custom-file-input" id="validatedInputGroupCustomFile">
+                <input type="file" name="image" class="custom-file-input" id="validatedInputGroupCustomFile">
                 <label class="custom-file-label" for="validatedInputGroupCustomFile">Изображение основной категории</label>
             </div>
             <div class="card mb-3">

@@ -4,14 +4,14 @@
 
 @section('content')
     <div class="card-body">
-        <form method="post" action="{{ route('admin.site.faq.create') }}" class="">
+        <form method="post" action="{{ route('admin.site.faq.store') }}" class="">
             <div class="form-group">
                 <label for="editor">Заголовок вопроса</label>
-                <input name="caption" class="form-control">
+                <input name="title" class="form-control">
             </div>
             <div class="form-group">
                 <label for="editor">Содержание вопроса</label>
-                <textarea name="text" class="border border-dark" id="editor"></textarea>
+                <textarea name="content" class="border border-dark" id="editor"></textarea>
             </div>
             @csrf
             <button type="submit" class="btn btn-success">Создать</button>

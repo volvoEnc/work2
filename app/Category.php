@@ -13,6 +13,17 @@ class Category extends Model
 
     public $timestamps = false;
 
+    public function products()
+    {
+        return $this->hasMany(Goods::class, 'category_id', 'id');
+    }
+
+    public function parentCategory()
+    {
+        return $this->belongsTo(GroupCategory::class, 'group_id', 'id');
+    }
+
+
     static public function build() : void
     {
         $offset = 0;

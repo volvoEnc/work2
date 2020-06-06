@@ -20,7 +20,7 @@ Route::prefix('admin')->group(function () {
      */
 
     Route::get('/orders', 'admin\OrderController@index')->name('admin.home');
-    Route::get('/order/{id}/{status}', 'admin\OrderController@status')->name('admin.order.status');
+    Route::get('/order/{order}/{status}', 'admin\OrderController@status')->name('admin.order.status');
 
     /*
      * Маршруты для всех видов категорий.
@@ -41,22 +41,24 @@ Route::prefix('admin')->group(function () {
     // Group
 
     Route::get('/categories/group', 'admin\CategoriesController@index_group')->name('admin.categories.group.index');
+    Route::get('/categories/group/{group_category}/delete', 'admin\CategoriesController@delete_group')->name('admin.categories.group.delete');
     Route::get('/categories/group/create', 'admin\CategoriesController@create_group')->name('admin.categories.group.create');
     Route::post('/categories/group/store', 'admin\CategoriesController@store_group')->name('admin.categories.group.store');
-    Route::get('/categories/group/{id}', 'admin\CategoriesController@show_group')->name('admin.categories.group.show');
-    Route::get('/categories/group/{id}/add/{id_item}', 'admin\CategoriesController@add_categories_to_group')->name('admin.categories.group.add');
-    Route::get('/categories/group/{id}/remove/{id_item}', 'admin\CategoriesController@remove_categories_to_group')->name('admin.categories.group.remove');
-    Route::post('/categories/group/{id}/update', 'admin\CategoriesController@update_group')->name('admin.categories.group.update');
+    Route::get('/categories/group/{group_category}', 'admin\CategoriesController@show_group')->name('admin.categories.group.show');
+    Route::get('/categories/group/{group_category}/add/{category}', 'admin\CategoriesController@add_categories_to_group')->name('admin.categories.group.add');
+    Route::get('/categories/group/{group_category}/remove/{category}', 'admin\CategoriesController@remove_categories_to_group')->name('admin.categories.group.remove');
+    Route::post('/categories/group/{group_category}/update', 'admin\CategoriesController@update_group')->name('admin.categories.group.update');
 
     // Main
 
     Route::get('/categories/main', 'admin\CategoriesController@index_main')->name('admin.categories.main.index');
     Route::get('/categories/main/create', 'admin\CategoriesController@create_main')->name('admin.categories.main.create');
     Route::post('/categories/main/store', 'admin\CategoriesController@store_main')->name('admin.categories.main.store');
-    Route::get('/categories/main/{id}', 'admin\CategoriesController@show_main')->name('admin.categories.main.show');
-    Route::get('/categories/main/{id}/add/{id_item}', 'admin\CategoriesController@add_categories_to_main')->name('admin.categories.main.add');
-    Route::get('/categories/main/{id}/remove{id_item}', 'admin\CategoriesController@remove_categories_to_main')->name('admin.categories.main.remove');
-    Route::post('/categories/main/{id}/update', 'admin\CategoriesController@update_main')->name('admin.categories.main.update');
+    Route::get('/categories/main/{main_category}', 'admin\CategoriesController@show_main')->name('admin.categories.main.show');
+    Route::get('/categories/main/{main_category}/add/{group_category}', 'admin\CategoriesController@add_categories_to_main')->name('admin.categories.main.add');
+    Route::get('/categories/main/{main_category}/remove{group_category}', 'admin\CategoriesController@remove_categories_to_main')->name('admin.categories.main.remove');
+    Route::post('/categories/main/{main_category}/update', 'admin\CategoriesController@update_main')->name('admin.categories.main.update');
+    Route::get('/categories/main/{main_category}/delete', 'admin\CategoriesController@delete_main')->name('admin.categories.main.delete');
 
 
 
@@ -68,10 +70,10 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/faq', 'admin\FaqController@index')->name('admin.site.faq.index');
     Route::get('/faq/create', 'admin\FaqController@create')->name('admin.site.faq.create');
-    Route::get('/faq/{id}', 'admin\FaqController@show')->name('admin.site.faq.show');
-    Route::get('/faq/remove/{id}', 'admin\FaqController@remove')->name('admin.site.faq.remove');
+    Route::get('/faq/{FAQ}', 'admin\FaqController@show')->name('admin.site.faq.show');
+    Route::get('/faq/remove/{FAQ}', 'admin\FaqController@remove')->name('admin.site.faq.remove');
     Route::post('/faq', 'admin\FaqController@store')->name('admin.site.faq.store');
-    Route::post('/faq/update/{id}', 'admin\FaqController@update')->name('admin.site.faq.update');
+    Route::post('/faq/update/{FAQ}', 'admin\FaqController@update')->name('admin.site.faq.update');
 
     // INFO
 
@@ -84,4 +86,12 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/', 'HomeController@show')->name('home');
-Route::get('/order/{id}', 'OrderController@show')->name('order.info');
+Route::get('/order/{order}', 'OrderController@show')->name('order.info');
+
+Route::middleware('guest')->group(function () {
+    Route::get('/login', 'LoginController@show')->name('login.show');
+    Route::post('/login', 'LoginController@login')->name('login.auth');
+
+    Route::get('/register', 'RegisterController@show')->name('register.show');
+    Route::post('/register', 'RegisterController@store')->name('register.store');
+});

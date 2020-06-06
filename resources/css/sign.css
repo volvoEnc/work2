@@ -1,0 +1,115 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    outline: none !important;
+    box-sizing: border-box;
+}
+
+dl, ol, ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none
+}
+
+a, a:hover {
+    color: inherit;
+    text-decoration: none
+}
+p {
+    margin: 0;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+body {
+    overflow-x: hidden;
+    font-weight: 400;
+    font-family: 'Russo One', sans-serif;
+}
+.section-title {
+    font-size: 48px;
+    color: #ffffff;
+    margin-bottom: 40px;
+}
+
+#sign {
+    padding: 50px 0;
+}
+#sign .box {
+    padding: 20px 50px;
+    border-radius: 25px;
+    box-shadow: 0 1px 2.5px 2.5px #efefef;
+}
+#sign form .form-header {
+    padding:   0 0 15px 0;
+    border-bottom: 1px solid #efefef;
+}
+#sign form .form-body {
+    padding: 15px 0;
+    border-bottom: 1px solid #efefef;
+}
+#sign form .form-header p {
+    text-align: center;
+    font-size: 24px;
+    color: #000000;
+}
+#sign form label {
+    padding-left: 15px;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    font-size: 16px;
+}
+#sign form input {
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+    height: 30px;
+    border: 1px solid #efefef;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0px 8px 9.4px 0.6px rgba(51, 51, 51, 0.2);
+}
+
+.form-footer {
+    padding-top: 15px;
+}
+.form-footer a {
+    display: block;
+    font-size: 14px;
+    color: #000000;
+}
+#sign .button3 {
+    padding: 10px 15px;
+}
+#sign .button-group {
+    display: flex;
+    justify-content: center;
+}
+#sign .button-group a {
+    margin: 0 15px 0 15px;
+    width: 100%;
+}
+@media (max-width: 480px) {
+    #sign {
+        padding: 30px 0;
+    }
+    #sign .box {
+        padding: 10px 15px;
+    }
+    #sign .button-group {
+        justify-content: center;
+        flex-direction: column;
+    }
+    #sign .button-group a {
+        width: 200px;
+        margin: 0 auto 15px auto;
+
+    }
+}
