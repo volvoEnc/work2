@@ -31,8 +31,8 @@
                                 <button type="submit" class="button button3 border-0" style="padding: 10px 30px">Вход</button>
                             </div>
                             <div class="form-footer">
-                                <a  href="#" style="color: #3333ff;margin-bottom: 15px;">Зарегистрироваться</a>
-                                <a href="#">Забыли пароль</a>
+                                <a href="{{route('register.show')}}" style="color: #3333ff;margin-bottom: 15px;">Зарегистрироваться</a>
+                                <a href="{{route('reset.password.step.1')}}">Забыли пароль</a>
                             </div>
                         </form>
                     </div>

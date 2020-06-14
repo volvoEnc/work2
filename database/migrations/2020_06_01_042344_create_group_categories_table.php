@@ -17,7 +17,7 @@ class CreateGroupCategoriesTable extends Migration
             $table->id();
             $table->foreignId('main_id')->nullable();
 
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('image')->nullable();
 
             $table->foreign('main_id')->references('id')->on('main_categories')->onDelete('set null');

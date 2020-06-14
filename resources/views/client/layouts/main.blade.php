@@ -25,12 +25,9 @@
                 </div>
                 <div >
                     <div class="d-flex right-block-top">
-                        <a href="#" class="button">Частые вопросы</a>
-                        @auth
-                            <a href="#" class="button button3">Профиль</a>
-                        @endauth
+                        <a href="{{route('faq')}}" class="button">Частые вопросы</a>
                         @guest
-                            <a href="{{route('login.show')}}" class="button button3 ">Войти</a>
+                            <a href="#" class="button button3">Войти</a>
                         @endguest
                     </div>
                 </div>
@@ -47,9 +44,9 @@
                     </form>
                 </div>
                 <div class="col-lg-6 right-block">
-                    <a href="#" class="button2 button ">Корзина</a>
                     @auth
-                        <a href="#" class="button button3">Профиль</a>
+                        <a href="{{route('cart')}}" class="button2 button ">Корзина</a>
+                        <a href="{{route('profile.show')}}" class="button button3 ">Профиль</a>
                     @endauth
                     @guest
                         <a href="{{route('login.show')}}" class="button button3 ">Войти</a>
@@ -90,31 +87,31 @@
             </select>
             <div class="dropdown-content">
                 <div class="categories row">
-                    <a href="#" class="box col-12">
+                    <a href="{{route('categories.group.index', ['id' => 1])}}" class="box col-12">
                         <img src="../header/header-img/dropdown1.png" alt="">
                         <p>Молочные продукты. <br> Яйцо.Сыры</p>
                     </a>
-                    <a href="#" class="box col-12">
+                    <a href="{{route('categories.group.index', ['id' => 1])}}" class="box col-12">
                         <img src="../header/header-img/dropdown2.png" alt="">
                         <p>Овощи.Фрукты. <br> Грибы</p>
                     </a>
-                    <a href="#" class="box col-12">
+                    <a href="{{route('categories.group.index', ['id' => 1])}}" class="box col-12">
                         <img src="../header/header-img/dropdown3.png" alt="">
                         <p>Детское питание</p>
                     </a>
-                    <a href="#" class="box col-12">
+                    <a href="{{route('categories.group.index', ['id' => 1])}}" class="box col-12">
                         <img src="../header/header-img/dropdown4.png" alt="">
                         <p>Крупы.Макароны. <br> Бакалея</p>
                     </a>
-                    <a href="#" class="box col-12">
+                    <a href="{{route('categories.group.index', ['id' => 1])}}" class="box col-12">
                         <img src="../header/header-img/dropdown5.png" alt="">
                         <p>Крупы.Макароны. <br> Бакалея</p>
                     </a>
-                    <a href="#" class="box col-12">
+                    <a href="{{route('categories.group.index', ['id' => 1])}}" class="box col-12">
                         <img src="../header/header-img/dropdown6.png" alt="">
                         <p>Крупы.Макароны. <br> Бакалея</p>
                     </a>
-                    <a href="#" class="box col-12">
+                    <a href="{{route('categories.group.index', ['id' => 1])}}" class="box col-12">
                         <img src="../header/header-img/dropdown7.png" alt="">
                         <p>Крупы.Макароны. <br> Бакалея</p>
                     </a>
@@ -129,34 +126,34 @@
                 <ul class="nav-link d-flex">
 
                     <li>
-                        <a class="dropdown" href="#">Продукты питания
+                        <a class="dropdown" href="{{route('categories.main.index', ['id' => 1])}}">Продукты питания
                         </a>
                         <div class="dropdown-content row no-gutters">
-                            <a href="#" class="box col-lg-2">
+                            <a href="{{route('categories.group.index', ['id' => 1])}}" class="box col-lg-2">
                                 <img src="../header/header-img/dropdown1.png" alt="">
                                 <p>Молочные продукты. <br> Яйцо.Сыры</p>
                             </a>
-                            <a href="#" class="box col-lg-2">
+                            <a href="{{route('categories.group.index', ['id' => 1])}}" class="box col-lg-2">
                                 <img src="../header/header-img/dropdown2.png" alt="">
                                 <p>Овощи.Фрукты. <br> Грибы</p>
                             </a>
-                            <a href="#" class="box col-lg-2">
+                            <a href="{{route('categories.group.index', ['id' => 1])}}" class="box col-lg-2">
                                 <img src="../header/header-img/dropdown3.png" alt="">
                                 <p>Детское питание</p>
                             </a>
-                            <a href="#" class="box col-lg-2">
+                            <a href="{{route('categories.group.index', ['id' => 1])}}" class="box col-lg-2">
                                 <img src="../header/header-img/dropdown4.png" alt="">
                                 <p>Крупы.Макароны. <br> Бакалея</p>
                             </a>
-                            <a href="#" class="box col-lg-2">
+                            <a href="{{route('categories.group.index', ['id' => 1])}}" class="box col-lg-2">
                                 <img src="../header/header-img/dropdown5.png" alt="">
                                 <p>Крупы.Макароны. <br> Бакалея</p>
                             </a>
-                            <a href="#" class="box col-lg-2">
+                            <a href="{{route('categories.group.index', ['id' => 1])}}" class="box col-lg-2">
                                 <img src="../header/header-img/dropdown6.png" alt="">
                                 <p>Крупы.Макароны. <br> Бакалея</p>
                             </a>
-                            <a href="#" class="box col-lg-2">
+                            <a href="{{route('categories.group.index', ['id' => 1])}}" class="box col-lg-2">
                                 <img src="../header/header-img/dropdown7.png" alt="">
                                 <p>Крупы.Макароны. <br> Бакалея</p>
                             </a>
@@ -366,16 +363,16 @@
                         <a href="#" class="title-gray">о нашем сервисе</a>
                         <a href="#" class="title-gray">оплата</a>
                         <a href="#" class="title-gray">доставка</a>
-                        <a href="#" class="title-gray">частые вопросы</a>
+                        <a href="{{route('faq')}}" class="title-gray">частые вопросы</a>
                         <a href="#" class="title-gray">политика конфиденциальности</a>
                     </div>
                 </div>
                 <div class=" box col-lg-3 col-md-4 col-sm-4 ">
                     <div class="footer-nav_box">
                         <p class="title">Профиль</p>
-                        <a href="#" class="title-gray">вход/регистрация</a>
+                        <a href="{{route('register.show')}}" class="title-gray">вход/регистрация</a>
                         <br>
-                        <a href="#" class="title-gray">восстановить пароль</a>
+                        <a href="{{route('reset.password.step.1')}}" class="title-gray">восстановить пароль</a>
                     </div>
                 </div>
             </div>

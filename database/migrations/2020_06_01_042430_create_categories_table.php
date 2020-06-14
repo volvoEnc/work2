@@ -16,7 +16,7 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('group_id')->nullable();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('img')->nullable();
             $table->foreign('group_id')->references('id')->on('group_categories')->onDelete('set null');
         });

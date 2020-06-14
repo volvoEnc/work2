@@ -95,3 +95,16 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', 'RegisterController@show')->name('register.show');
     Route::post('/register', 'RegisterController@store')->name('register.store');
 });
+
+Route::get('/reset/password/step/1', 'ResetPasswordControllerStep1@show')->name('reset.password.step.1');
+Route::get('/reset/password/step/2', 'ResetPasswordControllerStep2@show')->name('reset.password.step.2');
+
+Route::middleware('auth')->group(function () {
+    Route::get('profile/{user?}', 'UserController@show')->name('profile.show');
+});
+Route::get('cart/{key?}', 'CartController@show')->name('cart');
+Route::get('/faq', 'FaqController@index')->name('faq');
+Route::get('/checkout/{id}', 'CheckOutController@show')->name('checkout');
+Route::get('/categories/{id}', 'CategoriesController@index')->name('categories.group.index');
+Route::get('/categories', 'SubCategoriesController@index')->name('categories.main.index');
+

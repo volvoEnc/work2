@@ -112,17 +112,15 @@ header form button {
     margin-left: -52px;
     margin-top: 12px;
 }
-.nav-menu {
 
-}
 .nav-menu a {
     font-size: 18px;
     color: #000000;
 }
 .nav-link {
     position: relative;
-    padding: 0;
-    justify-content: space-between;
+    padding: 34px 0;
+    border-bottom: 1px solid #efefef;
 }
 header .header-top .row {
     justify-content: space-between;
@@ -130,25 +128,30 @@ header .header-top .row {
 .dropdown-content {
     position: absolute;
     width: 1109px;
-    padding: 20px 15px;
+    padding: 52px 10px;
     display: none;
     background: #ffffff;
-    top: 95px;
+    top: 59px;
     right: 0;
     z-index: 999999;
     left: 0;
-    border-top: 2px solid #efefef;
     border-bottom: 2px solid #efefef;
 }
-.nav-link li:first-child{
-    position: relative;
-}
+
 .nav-link li {
-    padding: 34px 0;
     transition: .4s ease-in-out;
+    padding-right: 35px;
+    padding-left: 35px;
+}
+.nav-link li:first-child {
+    padding-left: 0;
+}
+.nav-link li:last-child {
+    padding-right: 0;
 }
 .nav-link li  a {
     position: relative;
+    font-size: 15px;
 }
 .nav-link li  a:after {
     content: "";
@@ -167,7 +170,6 @@ header .header-top .row {
 .nav-link li:hover  .dropdown-content {
     display: flex;
 }
-
 .dropdown-content  .box {
     text-align: center;
     width: 100%;
@@ -304,7 +306,12 @@ header .header-top .row {
     border-radius: 30px;
     border: 1px solid #efefef;
 }
-
+@media (min-width: 1200px) {
+    .nav-link li {
+        padding-right: 35px;
+        padding-left: 35px;
+    }
+}
 @media (max-width: 1200px) {
     header .header-top .header-link {
         font-size: 20px;
@@ -314,8 +321,12 @@ header .header-top .row {
     }
         .dropdown-content {
             width: 930px;
-            top: 92px;
+            top: 54px;
         }
+    .nav-link li {
+        padding-right: 17px;
+        padding-left: 17px;
+    }
 }
 @media (max-width: 991px) {
     .mobile-menu {

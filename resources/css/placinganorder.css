@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    outline: none !important;
+    box-sizing: border-box;
+}
+
+dl, ol, ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none
+}
+
+a, a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+p {
+    margin: 0;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+body {
+    overflow-x: hidden;
+    font-weight: 400;
+    font-family: 'Russo One', sans-serif;
+}
+ .section-title {
+    color: #000000;
+    font-size: 36px;
+    margin-bottom: 27px;
+}
+ .section-subtitle {
+    color: #666666;
+    font-size: 14px;
+    margin-right: 72px;
+}
+ #placing {
+     padding: 40px 0;
+ }
+ #placing .title {
+     display: flex;
+     align-items: baseline;
+     justify-content: space-between;
+ }
+#placing form label,
+.select-title
+{
+    font-size: 24px;
+    color: #000000;
+}
+#placing form select
+{
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    color: #000000;
+    background: none;
+    box-shadow: 0 8px 9.4px 0.6px rgba(51, 51, 51, 0.2);
+    height: 33px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+.second-row {
+    justify-content: space-between;
+    align-items: center;
+}
+#placing form {
+    border-bottom: 1px solid #efefef;
+
+}
+#placing form select option span{
+    margin-right: 30px;
+}
+#placing form select#time2 {
+    margin-top: 46px;
+}
+#placing form select option:hover {
+    background: none;
+}
+.select-title {
+    margin-bottom: 10px;
+}
+.section-title {
+    margin-bottom: 15px;
+}
+ #placing form input {
+     display: block;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+     color: #000000;
+    background: none;
+    box-shadow: 0 8px 9.4px 0.6px rgba(51, 51, 51, 0.2);
+    width: 100%;
+    height: 33px;
+     margin-bottom: 30px;
+     padding: 10px;;
+}
+#placing .order-info {
+    padding: 20px 0;
+}
+#placing .order-info p {
+    font-size: 16px;
+    color: #000000;
+}
+#placing .order-info .info-price {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed #000000;
+    margin-bottom: 15px;
+}
+#placing .order-info .info-price p {
+    font-size: 18px;
+}
+#placing .order-info .info-price p.second {
+    color: #00cc00;
+}
+#placing .confirmation-order {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#placing .confirmation-order .total p {
+    font-size: 18px;
+}
+#placing .confirmation-order .total:last-child{
+    font-size: 22px;
+}
+#placing .confirmation-order .button {
+    background: #00cc00;
+    opacity: 0.8;
+    padding: 12px 30px;
+}
+@media (max-width: 991px) {
+    #placing form select#time2 {
+        margin-top: 0;
+    }
+     .section-title {
+        font-size: 25px;
+    }
+    #placing .title p {
+        display: none;
+    }
+    #placing .order-info .info-price:first-child {
+        margin-top: 40px;
+    }
+
+    #placing .confirmation-order {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    #placing form label, .select-title {
+        font-size: 22px;
+    }
+}
+@media (max-width: 480px) {
+    #placing .order-info .info-price p {
+        font-size: 14px;
+    }
+    #placing .confirmation-order {
+        justify-content: center;
+    }
+    #placing form label, .select-title {
+        font-size: 18px;
+    }
+    .section-title {
+        font-size: 18px;
+    }
+}
+
