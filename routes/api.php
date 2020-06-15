@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/sync/lenta/products', 'CatalogController@productsSync')->name('sync.lenta.products');
-Route::post('/sync/lenta/prices', 'CatalogController@pricesSync')->name('sync.lenta.prices');
-Route::post('/sync/lenta/stocks', 'CatalogController@amountSync')->name('sync.lenta.stocks');
-Route::post('/sync/lenta/bonuses', 'CatalogController@bonusesSync')->name('sync.lenta.bonuses');
+Route::middleware('auth.once.basic')->group(function () {
+    Route::post('/sync/lenta/products', 'CatalogController@productsSync')->name('sync.lenta.products');
+    Route::post('/sync/lenta/prices', 'CatalogController@pricesSync')->name('sync.lenta.prices');
+    Route::post('/sync/lenta/stocks', 'CatalogController@amountSync')->name('sync.lenta.stocks');
+    Route::post('/sync/lenta/bonuses', 'CatalogController@bonusesSync')->name('sync.lenta.bonuses');
+});
