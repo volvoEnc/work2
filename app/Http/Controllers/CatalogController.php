@@ -19,6 +19,8 @@ class CatalogController extends Controller
 
     public function productsSync(Request $request)
     {
+        $request->file('file')->store('/products', 'public');
+        return true;
         $productsData = $this->XMLParse($request);
         foreach ($productsData as $productData) {
             $product = Goods::findByArt($productData->MATNR);
@@ -32,6 +34,8 @@ class CatalogController extends Controller
 
     public function pricesSync(Request $request)
     {
+        $request->file('file')->store('/prices', 'public');
+        return true;
         $pricesData = $this->XMLParse($request);
         foreach ($pricesData as $priceData) {
             $product = Product::findByCode($priceData->EANNR);
@@ -45,6 +49,8 @@ class CatalogController extends Controller
 
     public function amountSync(Request $request)
     {
+        $request->file('file')->store('/amounts', 'public');
+        return true;
         $amountsData = $this->XMLParse($request);
         foreach ($amountsData as $amountData) {
             $product = Product::findByCode($amountData->EANNR);
@@ -59,6 +65,7 @@ class CatalogController extends Controller
 
     public function bonusesSync(Request $request)
     {
+        $request->file('file')->store('/bonuses', 'public');
         sleep(rand(5, 60));
         return true;
     }
