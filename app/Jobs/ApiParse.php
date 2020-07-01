@@ -172,8 +172,9 @@ class ApiParse {
                     $good = Goods::where('code', $item['EANNR'])->first();
                     if (!$good) {
                         $product->art   = null;
+                    } else {
+                        $product->art   = $good->art;
                     }
-                    $product->art       = $good->art;
                 }
 
                 $product->code          = $item['EANNR'] ?? null;
