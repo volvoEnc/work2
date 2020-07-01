@@ -30,9 +30,12 @@ class ApiParse {
             switch ($to_parse->type) {
                 case 'products':
                     self::parseProducts($array, $to_parse);
+                    self::fixPrices();
+                    self::fixAmmounts();
                 break;
                 case 'prices':
                     self::parsePrices($array, $to_parse);
+                    self::fixAmmounts();
                 break;
                 case 'ammounts':
                     self::parseAmmounts($array, $to_parse);
@@ -42,6 +45,12 @@ class ApiParse {
                 break;
             }
         }
+
+        //on product proces and ammounts
+        //on price proccess ammounts
+
+        //parsePrices art=null
+        //parseAmmounts art=null price=null
         dump('done');
     }
     
@@ -101,6 +110,22 @@ class ApiParse {
         }
     }
 
+    private static function fixAmmounts () {
+        $products = Product::where('art', null)
+            ->orWhere('price', null)->get();
+        foreach ($products as $product) {
+            $good = Goods::where('code', $product->code)->first();
+            if ($good) {
+                $product->art = $good->art;
+            }
+            $price = Price::where('code', $product->code)->first();
+            if ($price) {
+                $product->price     =  $price->price;
+            }
+            $price->save();
+        }
+    }
+
     private static function parseAmmounts ($array, $parser) {
         $parser->in_proccess = 1;
         $parser->save();
@@ -127,27 +152,28 @@ class ApiParse {
             if (isset($item['EANNR'])) {
                 $product = Product::findByCode($item['EANNR']);
                 if (!$product) {
-                    $product = new Price();
+                    $product = new Product();
                 } else {
                     $good = Goods::where('code', $item['EANNR'])->first();
                     if (!$good) {
-                        continue;
+                        $product->art   = null;
                     }
                     $product->art       = $good->art;
                 }
 
-                $product->code          = $item['EANNR'] ?? 'undefined';
+                $product->code          = $item['EANNR'] ?? null;
                 
-                $product->shop          = $item['SHOP'] ?? '';
+                $product->shop          = $item['SHOP'] ?? null;
 
                 $price = Price::where('code', $item['EANNR'])->first();
                 if (!$price) {
-                    continue;
+                    $product->price     =  null;
+                } else {
+                    $product->price     =  $price->price;
                 }
-                $product->price         =  $price->price;
                 
-                $product->ammount       = $item['STOCK'] ?? 0;
-                $product->assort        = $item['ASSORT'] ?? 0;
+                $product->amount        = floatval($item['STOCK'] ?? 0);
+                $product->assort        = intval($item['ASSORT'] ?? 0);
                 
                 $product->save();
             }
@@ -163,6 +189,17 @@ class ApiParse {
             $parser->errors++;
             $parser->last_error = $e->getMessage();
             $parser->save();
+        }
+    }
+
+    private static function fixPrices () {
+        $prices = Price::where('art', null)->get();
+        foreach ($prices as $price) {
+            $good = Goods::where('code', $price->code)->first();
+            if ($good) {
+                $price->art = $good->art;
+                $price->save();
+            }
         }
     }
 
@@ -198,14 +235,15 @@ class ApiParse {
                 } else {
                     $good = Goods::where('code', $item['EANNR'])->first();
                     if (!$good) {
-                        continue;
+                        $price->art   = null;
+                    } else {
+                        $price->art   = $good->art;
                     }
-                    $price->art       = $good->art;
                 }
 
-                $price->code          = $item['EANNR'] ?? 'undefined';
+                $price->code          = $item['EANNR'] ?? null;
                 
-                $price->shop          = $item['SHOP'] ?? '';
+                $price->shop          = $item['SHOP'] ?? null;
                 $price->price         = $item['PRICE'] ?? 0;
                 $price->vat           = $item['VAT'] ?? 0;
                 
@@ -271,17 +309,17 @@ class ApiParse {
                 if (!$product) {
                     $product = new Goods();
                 }
-                $product->name          = $item['ZEXARTNM'] ?? 'undefined';
-                $product->brand         = $item['ZEXVENBR'] ?? 'none';
-                $product->description   = $item['ZEXARTDS'] ?? '';
+                $product->name          = $item['ZEXARTNM'] ?? null;
+                $product->brand         = $item['ZEXVENBR'] ?? null;
+                $product->description   = $item['ZEXARTDS'] ?? null;
                 $product->art           = $item['ZEXARTCD'];
-                $product->SAP_code      = $item['MATNR'] ?? '';
-                $product->code          = $item['EANNR'] ?? '';
-                $product->package       = $item['ZEXPACKG'] ?? 'none';
-                $product->country       = $item['WHERL'] ?? '';
+                $product->SAP_code      = $item['MATNR'] ?? null;
+                $product->code          = $item['EANNR'] ?? null;
+                $product->package       = $item['ZEXPACKG'] ?? null;
+                $product->country       = $item['WHERL'] ?? null;
                 
                 
-                $product->category_name = $item['WGBEZ'] ?? '';
+                $product->category_name = $item['WGBEZ'] ?? null;
                 $cat = Category::where('name', $product->category_name)->first();
                 if (!$cat) {
                     $cat = new Category();
@@ -290,8 +328,8 @@ class ApiParse {
                 }
                 $product->category_id   = $cat->id;
                 
-                $product->ingredients   = $item['INGRIDIENTS'] ?? '';
-                $product->manufacturer  = $item['LIFNR'] ?? 'none';
+                $product->ingredients   = $item['INGRIDIENTS'] ?? null;
+                $product->manufacturer  = $item['LIFNR'] ?? null;
                 $product->save();
             }
             if ($parser->on_item % 50 == 0) {
