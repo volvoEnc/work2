@@ -20,4 +20,9 @@ class LoginController extends Controller
         }
         return back()->withErrors(['auth' => 'Логин или пароль введены неверно']);
     }
+
+    public function logout () {
+        Auth::logout();
+        return redirect()->route('home');
+    }
 }

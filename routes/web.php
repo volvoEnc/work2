@@ -91,10 +91,11 @@ Route::get('/order/{order}', 'OrderController@show')->name('order.info');
 Route::middleware('guest')->group(function () {
     Route::get('/login', 'LoginController@show')->name('login.show');
     Route::post('/login', 'LoginController@login')->name('login.auth');
-
+    
     Route::get('/register', 'RegisterController@show')->name('register.show');
     Route::post('/register', 'RegisterController@store')->name('register.store');
 });
+Route::get('/logout', 'LoginController@logout')->name('logout');
 
 Route::get('/reset/password/step/1', 'ResetPasswordControllerStep1@show')->name('reset.password.step.1');
 Route::get('/reset/password/step/2', 'ResetPasswordControllerStep2@show')->name('reset.password.step.2');

@@ -36,7 +36,7 @@ class Goods extends Model
 
     static public function findBySAP($SAP) :?Goods
     {
-        return self::where('SAP', $SAP)->first();
+        return self::where('SAP_code', $SAP)->first();
     }
 
     static public function findByArt($art) :?Goods
