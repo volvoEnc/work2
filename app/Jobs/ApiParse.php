@@ -11,14 +11,29 @@ use App\Price;
 use App\Product;
 use App\Models\Bonus;
 
+use Carbon\Carbon;
+
 class ApiParse {
     public static function parseFirst () {
         set_time_limit(0);
-        $to_parse = APIParsing::where([
+
+        $ten_minutes_ago = Carbon::now()->subMinutes(10)->toDateTimeString();
+
+        $to_parse_rows = APIParsing::where([
             ['finished', 0],
-            ['in_proccess', 0]
-        ])->first();
-        if ($to_parse) {
+            ['in_proccess', 0],
+            ['errors', '<', 10]
+        ])
+            ->orWhere([
+                ['errors', '<', 10],
+                ['finished', 0],
+                ['in_proccess', 1],
+                ['updated_at', '<', $ten_minutes_ago]
+            ])
+            ->limit(100)
+            ->get();
+
+        foreach ($to_parse_rows as $to_parse) {
             $xml_string = Storage::get('apis\\' . $to_parse->filename);
 
             $xml = simplexml_load_string($xml_string);
@@ -157,8 +172,9 @@ class ApiParse {
                     $good = Goods::where('code', $item['EANNR'])->first();
                     if (!$good) {
                         $product->art   = null;
+                    } else {
+                        $product->art   = $good->art;
                     }
-                    $product->art       = $good->art;
                 }
 
                 $product->code          = $item['EANNR'] ?? null;
