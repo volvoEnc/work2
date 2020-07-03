@@ -45,12 +45,9 @@ class ApiParse {
             switch ($to_parse->type) {
                 case 'products':
                     self::parseProducts($array, $to_parse);
-                    self::fixPrices();
-                    self::fixAmmounts();
                 break;
                 case 'prices':
                     self::parsePrices($array, $to_parse);
-                    self::fixAmmounts();
                 break;
                 case 'ammounts':
                     self::parseAmmounts($array, $to_parse);
@@ -125,22 +122,6 @@ class ApiParse {
         }
     }
 
-    private static function fixAmmounts () {
-        $products = Product::where('art', null)
-            ->orWhere('price', null)->get();
-        foreach ($products as $product) {
-            $good = Goods::where('code', $product->code)->first();
-            if ($good) {
-                $product->art = $good->art;
-            }
-            $price = Price::where('code', $product->code)->first();
-            if ($price) {
-                $product->price     =  $price->price;
-            }
-            $price->save();
-        }
-    }
-
     private static function parseAmmounts ($array, $parser) {
         $parser->in_proccess = 1;
         $parser->save();
@@ -168,25 +149,11 @@ class ApiParse {
                 $product = Product::findByCode($item['EANNR']);
                 if (!$product) {
                     $product = new Product();
-                } else {
-                    $good = Goods::where('code', $item['EANNR'])->first();
-                    if (!$good) {
-                        $product->art   = null;
-                    } else {
-                        $product->art   = $good->art;
-                    }
                 }
 
                 $product->code          = $item['EANNR'] ?? null;
                 
                 $product->shop          = $item['SHOP'] ?? null;
-
-                $price = Price::where('code', $item['EANNR'])->first();
-                if (!$price) {
-                    $product->price     =  null;
-                } else {
-                    $product->price     =  $price->price;
-                }
                 
                 $product->amount        = floatval($item['STOCK'] ?? 0);
                 $product->assort        = intval($item['ASSORT'] ?? 0);
@@ -205,17 +172,6 @@ class ApiParse {
             $parser->errors++;
             $parser->last_error = $e->getMessage();
             $parser->save();
-        }
-    }
-
-    private static function fixPrices () {
-        $prices = Price::where('art', null)->get();
-        foreach ($prices as $price) {
-            $good = Goods::where('code', $price->code)->first();
-            if ($good) {
-                $price->art = $good->art;
-                $price->save();
-            }
         }
     }
 
@@ -248,13 +204,6 @@ class ApiParse {
                 $price = Price::findByCode($item['EANNR']);
                 if (!$price) {
                     $price = new Price();
-                } else {
-                    $good = Goods::where('code', $item['EANNR'])->first();
-                    if (!$good) {
-                        $price->art   = null;
-                    } else {
-                        $price->art   = $good->art;
-                    }
                 }
 
                 $price->code          = $item['EANNR'] ?? null;
