@@ -1,8 +1,6 @@
 <?php
 namespace App\Jobs;
 
-use Illuminate\Support\Facades\Storage;
-
 use App\Models\APIParsing;
 
 use App\Goods;
@@ -12,6 +10,8 @@ use App\Product;
 use App\Models\Bonus;
 
 use Carbon\Carbon;
+
+use App\Tools\ZipManager;
 
 class ApiParse {
     public static function parseFirst () {
@@ -34,7 +34,10 @@ class ApiParse {
             ->get();
 
         foreach ($to_parse_rows as $to_parse) {
-            $xml_string = Storage::get('apis\\' . $to_parse->filename);
+            $xml_string = $to_parse->giveMeContent();
+            if ($xml_string === false) {
+                continue;
+            }
 
             $xml = simplexml_load_string($xml_string);
     
@@ -56,6 +59,7 @@ class ApiParse {
                     self::parseBonuses($array, $to_parse);
                 break;
             }
+            ZipManager::zip_api_parsing($to_parse);
         }
 
         //on product proces and ammounts
@@ -127,12 +131,20 @@ class ApiParse {
         $parser->save();
 
         $count = count($array['item']) - 1;
+        if (!isset($array['item'][0])) { 
+            $count = 1;
+        }
         try {
         for (
-            $i = $parser->on_item, $item = $array['item'][$i]; 
+            $i = $parser->on_item;
             $i < $count; 
-            $i++, $item = $array['item'][$i], $parser->on_item++
+            $i++, $parser->on_item++
         ) {
+            if (isset($array['item'][$i])) {
+                $item = $array['item'][$i]; 
+            } else {
+                $item = $array['item'];
+            }
             dump($i);
             /*
             EANNR           - штрих-код
@@ -180,12 +192,20 @@ class ApiParse {
         $parser->save();
 
         $count = count($array['item']) - 1;
+        if (!isset($array['item'][0])) { 
+            $count = 1;
+        }
         try {
         for (
-            $i = $parser->on_item, $item = $array['item'][$i]; 
+            $i = $parser->on_item; 
             $i < $count; 
-            $i++, $item = $array['item'][$i], $parser->on_item++
+            $i++, $parser->on_item++
         ) {
+            if (isset($array['item'][$i])) {
+                $item = $array['item'][$i]; 
+            } else {
+                $item = $array['item'];
+            }
             dump($i);
             /*
             EANNR           все штрих-кода товара
@@ -234,12 +254,20 @@ class ApiParse {
         $parser->save();
 
         $count = count($array['item']) - 1;
+        if (!isset($array['item'][0])) { 
+            $count = 1;
+        }
         try {
         for (
-            $i = $parser->on_item, $item = $array['item'][$i]; 
+            $i = $parser->on_item; 
             $i < $count; 
-            $i++, $item = $array['item'][$i], $parser->on_item++
+            $i++, $parser->on_item++
         ) {
+            if (isset($array['item'][$i])) {
+                $item = $array['item'][$i]; 
+            } else {
+                $item = $array['item'];
+            }
             dump($i);
             /*
             EANNR               - штрих-код                
