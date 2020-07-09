@@ -13,55 +13,34 @@
 </head>
 <body>
 <header>
-    <div class="header-top">
-        <div class="container">
-            <div class="row align-items-center">
-                <div>
-                    <div class="d-flex links">
-                        <a class="header-link" href="#">Доставка</a>
-                        <a class="header-link" href="#">Оплата</a>
-                        <a class="header-link" href="#">Возврат</a>
-                    </div>
-                </div>
-                <div >
-                    <div class="d-flex right-block-top">
-                        <a href="{{route('faq')}}" class="button">Частые вопросы</a>
-                        @guest
-                            <a href="#" class="button button3">Войти</a>
-                        @endguest
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="header-bottom">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6 left-block">
+            <div class="pc-menu">
+                <div class='logo'>dostavkalenta.ru</div>
+                <div class='katalog'>каталог</div>
+                <div class='search-menu'>
                     <form action="">
                         <input type="search" placeholder="Морковь из сыра">
                         <button type="submit"><img src="../header/header-img/lupa.png" alt=""></button>
                     </form>
                 </div>
-                <div class="col-lg-6 right-block">
-                    @auth
-                        <a href="{{route('cart')}}" class="button2 button ">Корзина</a>
-                        <a href="{{route('profile.show')}}" class="button button3 ">Профиль</a>
-                    @endauth
-                    @guest
-                        <a href="{{route('login.show')}}" class="button button3 ">Войти</a>
-                    @endguest
+                @auth
+                    <a href="{{route('cart')}}" class="button2 button ">Корзина</a>
+                    <a href="{{route('profile.show')}}" class="button button3 ">Профиль</a>
+                @endauth
+                @guest
+                    <a href="{{route('login.show')}}" class="button button3 ">Войти</a>
+                @endguest
+            </div>
+            <div class="mobile-menu">
+                <div class=" burger-button">
+                    <div class="line"></div>
                 </div>
-                <div class="mobile-menu">
-                    <div class=" burger-button">
-                        <div class="line"></div>
-                    </div>
-                    <div class="logo">
-                        <a href="#">dostavkalenta.ru</a>
-                    </div>
-                    <div class="cart">
-                        <img src="../header/header-img/cart.png" alt="">
-                    </div>
+                <div class="logo">
+                    <a href="#">dostavkalenta.ru</a>
+                </div>
+                <div class="cart">
+                    <img src="../header/header-img/cart.png" alt="">
                 </div>
             </div>
         </div>
