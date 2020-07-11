@@ -1,5 +1,10 @@
+@font-face {
+    font-family: 'Gilroy ExtraBold';
+    src: url('/fonts/gilroy-extrabold.woff') format('woff'); /* Pretty Modern Browsers */
+}
+
 header .header-top {
-    padding: 28px 0;
+    padding: 0px 0;
 }
 header .header-top .links {
     display: flex;
@@ -20,11 +25,95 @@ header  .right-block {
 .right-block .button3{
     display: flex;
 }
+.pc-menu {
+    display: flex;
+    align-items:center;
+    justify-content:space-between;
+}
+.pc-menu > div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.pc-menu a {
+    font-size: 16px;
+    font-family: "Open Sans",Helvetica,Verdana,"Lucida Grande",sans-serif;
+}
+.pc-menu .left_part {
+    justify-content: space-between;
+}
+.pc-menu .left_part > * {
+    flex: 1;
+}
+.pc-menu .left_part a{
+    position: relative;
+}
+.pc-menu .left_part a:before,
+.expandbar {
+    content: "";
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background: #1a00c4;
+    height: 1px;
+    left: 0;
+    transition: .4s ease-out;
+    transform: scaleX(0);
+}
+.pc-menu .left_part a:hover:before,
+*:hover + .expandbar,
+*:focus + .expandbar {
+    transform: scaleX(1.1);
+}
+.pc-menu .left_part a:hover {
+    color: #1a00c4;
+}
+.pc-menu .right_part {
+    justify-content: flex-end;
+}
+.logo {
+    margin: 0 20px;
+}
+.logo a{
+    letter-spacing: -0.05em;
+    font-family: 'Gilroy ExtraBold';
+    color: black;
+    cursor: pointer;
+    font-size: 36px;
+}
+.katalog {
+
+}
+.search-menu {
+    flex: 1;
+}
+.search-menu input, .search-menu input {
+    border: none;
+    color: #1a00c4;
+}
+.search-menu input, .search-menu input::placeholder {
+    font-size: 16px;
+    font-family: "Open Sans",Helvetica,Verdana,"Lucida Grande",sans-serif;
+}
+.btn { 
+    font-family: "Open Sans",Helvetica,Verdana,"Lucida Grande",sans-serif;
+    border-radius: 30px;
+    font-size: 16px;
+    padding:20px;
+    text-align: center;
+}
+.btn-primary {
+    border: none;
+    color: black;
+    outline: none;
+    min-width: 100px;
+    background-color: #ffe100;
+}
 .button {
     padding: 20px 30px;
     background: rgba(72, 51, 208, 1);
     transition: .4s ease;
-    border-radius: 30px;
+    border-radius: 5px;
     color: #ffffff;
     font-size: 16px;
     position: relative;
@@ -59,13 +148,14 @@ header  .right-block {
     color: #000000!important;
 }
 .button3 {
+    border: 5px solid #fe4f3c;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 137px;
-    background: #00cc33;
-    color: #ffffff;;
-    padding: 20px 50px;
+    background: #f5dd29;
+    color: #f84c47;;
+    padding: 10px 50px;
     margin-left: 18px;
 }
 .button2:hover{
@@ -92,13 +182,6 @@ header  .right-block {
 header .header-bottom {
     padding: 18px 0 12px 0;
     background: #f5dd29;
-}
-header form input {
-    border: 1px solid #999999;
-    padding: 16px 16px 16px 16px;
-    border-radius: 30px;
-    width: 100%;
-    position: relative;
 }
 header form input::placeholder {
     font-size: 18px;

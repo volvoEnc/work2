@@ -48,13 +48,17 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 | and wonderful application we have prepared for them.
 |
 */
+try {
 
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
-
-$response = $kernel->handle(
-    $request = Illuminate\Http\Request::capture()
-);
-
-$response->send();
-
-$kernel->terminate($request, $response);
+    $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+    
+    $response = $kernel->handle(
+        $request = Illuminate\Http\Request::capture()
+    );
+    
+    $response->send();
+    
+    $kernel->terminate($request, $response);
+} catch (Exception $e) {
+    echo $e->getMessage();
+}

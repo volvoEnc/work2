@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('css/font-awesome-all.css')}}">
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
 </head>
@@ -15,53 +17,41 @@
 <header>
     <div class="header-top">
         <div class="container">
-            <div class="row align-items-center">
-                <div>
-                    <div class="d-flex links">
-                        <a class="header-link" href="#">Доставка</a>
-                        <a class="header-link" href="#">Оплата</a>
-                        <a class="header-link" href="#">Возврат</a>
+            <div class="pc-menu">
+                <div class="left_part">
+                    <div class='katalog'><a href='#'>Каталог</a></div>
+                    <div class='search-menu'>
+                        <form action="#">
+                            <div class='input-group'>
+                                <input type="search" placeholder="Поиск">
+                                <div class="expandbar"></div>
+                                <button><span class='fas fa-search'></span></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div >
-                    <div class="d-flex right-block-top">
-                        <a href="{{route('faq')}}" class="button">Частые вопросы</a>
-                        @guest
-                            <a href="#" class="button button3">Войти</a>
-                        @endguest
-                    </div>
+                <div class="logo">
+                    <a href="/">dostavkalenta.ru</a>
+                </div>
+                <div class="right_part">
+                    @auth
+                    <a href="{{route('cart')}}" class="button2 button ">Корзина</a>
+                    <a href="{{route('profile.show')}}" class="button button3 ">Профиль</a>
+                @endauth
+                @guest
+                    <a href="{{route('login.show')}}" class="btn btn-primary">Войти</a>
+                @endguest
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="header-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 left-block">
-                    <form action="">
-                        <input type="search" placeholder="Морковь из сыра">
-                        <button type="submit"><img src="../header/header-img/lupa.png" alt=""></button>
-                    </form>
+            <div class="mobile-menu">
+                <div class=" burger-button">
+                    <div class="line"></div>
                 </div>
-                <div class="col-lg-6 right-block">
-                    @auth
-                        <a href="{{route('cart')}}" class="button2 button ">Корзина</a>
-                        <a href="{{route('profile.show')}}" class="button button3 ">Профиль</a>
-                    @endauth
-                    @guest
-                        <a href="{{route('login.show')}}" class="button button3 ">Войти</a>
-                    @endguest
+                <div class="logo">
+                    <a href="#">dostavkalenta.ru</a>
                 </div>
-                <div class="mobile-menu">
-                    <div class=" burger-button">
-                        <div class="line"></div>
-                    </div>
-                    <div class="logo">
-                        <a href="#">dostavkalenta.ru</a>
-                    </div>
-                    <div class="cart">
-                        <img src="../header/header-img/cart.png" alt="">
-                    </div>
+                <div class="cart">
+                    <img src="../header/header-img/cart.png" alt="">
                 </div>
             </div>
         </div>
