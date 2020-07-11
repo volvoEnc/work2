@@ -9,6 +9,8 @@ use App\Price;
 use App\Product;
 use App\Models\Bonus;
 
+use Illuminate\Support\Facades\Storage;
+
 use Carbon\Carbon;
 
 use App\Tools\ZipManager;
@@ -59,7 +61,8 @@ class ApiParse {
                     self::parseBonuses($array, $to_parse);
                 break;
             }
-            ZipManager::zip_api_parsing($to_parse);
+            Storage::delete('apis\\' . $this->filename);
+            // ZipManager::zip_api_parsing($to_parse);
         }
 
         //on product proces and ammounts

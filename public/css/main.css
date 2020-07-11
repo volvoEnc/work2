@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Gilroy ExtraBold';
+    src: url('/fonts/gilroy-extrabold.woff') format('woff'); /* Pretty Modern Browsers */
+}
+
 header .header-top {
     padding: 0px 0;
 }
@@ -25,35 +30,84 @@ header  .right-block {
     align-items:center;
     justify-content:space-between;
 }
+.pc-menu > div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.pc-menu a {
+    font-size: 16px;
+    font-family: "Open Sans",Helvetica,Verdana,"Lucida Grande",sans-serif;
+}
+.pc-menu .left_part {
+    justify-content: space-between;
+}
+.pc-menu .left_part > * {
+    flex: 1;
+}
+.pc-menu .left_part a{
+    position: relative;
+}
+.pc-menu .left_part a:before,
+.expandbar {
+    content: "";
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background: #1a00c4;
+    height: 1px;
+    left: 0;
+    transition: .4s ease-out;
+    transform: scaleX(0);
+}
+.pc-menu .left_part a:hover:before,
+*:hover + .expandbar,
+*:focus + .expandbar {
+    transform: scaleX(1.1);
+}
+.pc-menu .left_part a:hover {
+    color: #1a00c4;
+}
+.pc-menu .right_part {
+    justify-content: flex-end;
+}
 .logo {
-    border: 5px solid #ff3e3ee3;
-    font-size: 30px;
-    color: #ff3e3ee3;
-    transform: rotate(9deg);
-    font-weight: normal;
-    text-shadow: 0px 1px 0 #ffffff82, -1px -1px 0 #0000007d;
-    padding: 0 10px;
-    border-radius: 5px;
-    margin: 15px 0;
-    box-shadow: 3px 3px 0px 0px #e42814,
-                10px -10px 0px 0px #ffffff45,
-                9px -11px 0px 0px #000000ba;
+    margin: 0 20px;
+}
+.logo a{
+    letter-spacing: -0.05em;
+    font-family: 'Gilroy ExtraBold';
+    color: black;
+    cursor: pointer;
+    font-size: 36px;
 }
 .katalog {
-    border: 5px solid #fe4f3c;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 137px;
-    background: #f5dd29;
-    color: #f84c47;
-    padding: 10px 50px;
-    margin-left: 18px;
-    margin-right: 18px;
-    border-radius: 5px;
+
 }
 .search-menu {
     flex: 1;
+}
+.search-menu input, .search-menu input {
+    border: none;
+    color: #1a00c4;
+}
+.search-menu input, .search-menu input::placeholder {
+    font-size: 16px;
+    font-family: "Open Sans",Helvetica,Verdana,"Lucida Grande",sans-serif;
+}
+.btn { 
+    font-family: "Open Sans",Helvetica,Verdana,"Lucida Grande",sans-serif;
+    border-radius: 30px;
+    font-size: 16px;
+    padding:20px;
+    text-align: center;
+}
+.btn-primary {
+    border: none;
+    color: black;
+    outline: none;
+    min-width: 100px;
+    background-color: #ffe100;
 }
 .button {
     padding: 20px 30px;
@@ -128,14 +182,6 @@ header  .right-block {
 header .header-bottom {
     padding: 18px 0 12px 0;
     background: #f5dd29;
-}
-header form input {
-    border: 5px solid #fe4f3c;
-    padding: 10px 16px 10px 16px;
-    border-radius: 5px;
-    width: 100%;
-    position: relative;
-    background-color: #ffffff;
 }
 header form input::placeholder {
     font-size: 18px;
